@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGNIS-4WD — Vehicle Interface Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="navbar">
+            <div class="brand-title">AGNIS<span class="brand-accent">-4WD</span></div>
+            <div class="status-badge" id="sys-status">ONLINE</div>
+        </header>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Three-Phone Interface System</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4;">
+                Select the target screen role for this smartphone device:
+            </p>
+            
+            <div class="nav-grid">
+                <a href="vision.html" class="nav-card">
+                    📷 Phone 1 — Vision
+                    <span class="nav-sub">ESP32-CAM MJPEG Stream</span>
+                </a>
+                <a href="drive.html" class="nav-card">
+                    🎮 Phone 2 — Drive
+                    <span class="nav-sub">Remote Joystick & Safety</span>
+                </a>
+                <a href="telemetry.html" class="nav-card">
+                    📊 Phone 3 — Telemetry
+                    <span class="nav-sub">Sensors, IMU, GPS & Power</span>
+                </a>
+                <a href="diagnostics.html" class="nav-card">
+                    🛠️ Commissioning
+                    <span class="nav-sub">Hardware Self-Test Suite</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Vehicle System Quick Info</span>
+            </div>
+            <div class="grid-2x2">
+                <div class="metric-box">
+                    <span class="metric-label">Controller</span>
+                    <span class="metric-value">ESP32</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">Motor Driver</span>
+                    <span class="metric-value">L298N</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">Sensors</span>
+                    <span class="metric-value">2×HC-SR04</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">Telemetry</span>
+                    <span class="metric-value">IMU / GPS</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

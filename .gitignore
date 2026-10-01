@@ -1,0 +1,19 @@
+# PlatformIO build artifacts & libraries
+.pio/
+.pioenvs/
+.piolibdeps/
+.clang_complete
+
+# Compiled binaries
+*.bin
+*.elf
+*.hex
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.sublime-*
+
+# OS files
+.DS_Store
+Thumbs.db

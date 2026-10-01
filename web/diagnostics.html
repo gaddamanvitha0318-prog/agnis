@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGNIS-4WD — COMMISSIONING & DIAGNOSTICS</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="navbar">
+            <div class="brand-title">AGNIS <span class="brand-accent">DIAGNOSTICS</span></div>
+            <div class="status-badge warning" id="diag-badge">LOCKOUT</div>
+        </header>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Hardware Commissioning Suite</span>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-secondary);">
+                Individual subsystem verification tests. Motor tests require explicit operator authorization.
+            </p>
+            <div class="nav-grid">
+                <button class="mode-btn" onclick="testSubsystem('us')">Check Ultrasonics</button>
+                <button class="mode-btn" onclick="testSubsystem('servos')">Sweep Servos</button>
+                <button class="mode-btn" onclick="testSubsystem('imu')">Test MPU6050</button>
+                <button class="mode-btn" onclick="testSubsystem('gps')">Test GPS</button>
+            </div>
+        </div>
+
+        <div class="card" style="border-color: var(--status-amber);">
+            <div class="card-header">
+                <span class="card-title" style="color: var(--status-amber);">⚠️ Motor Testing Lockout</span>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-secondary);">
+                Press authorization switch to briefly test left/right BO motor channels.
+            </p>
+            <button class="mode-btn" id="motor-auth-btn" style="background: var(--status-amber); color: #000; font-weight: 700;" onclick="authorizeMotors()">ENABLE MOTOR TEST</button>
+            <div class="nav-grid" id="motor-test-grid" style="display: none; margin-top: 10px;">
+                <button class="mode-btn" onclick="testMotor('left')">Test Left Motors</button>
+                <button class="mode-btn" onclick="testMotor('right')">Test Right Motors</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        function authorizeMotors() {
+            document.getElementById('motor-auth-btn').style.display = 'none';
+            document.getElementById('motor-test-grid').style.display = 'grid';
+            document.getElementById('diag-badge').innerText = 'MOTORS ACTIVE';
+            document.getElementById('diag-badge').className = 'status-badge emergency';
+        }
+        function testSubsystem(sys) {
+            alert('Running test for: ' + sys.toUpperCase());
+        }
+        function testMotor(side) {
+            fetch('/api/drive', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({speed: 120, turn: side === 'left' ? -120 : 120})
+            });
+            setTimeout(() => {
+                fetch('/api/drive', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({speed: 0, turn: 0})
+                });
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

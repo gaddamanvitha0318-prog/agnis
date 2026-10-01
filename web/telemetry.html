@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGNIS-4WD — ENGINEERING TELEMETRY</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="navbar">
+            <div class="brand-title">AGNIS <span class="brand-accent">TELEMETRY</span></div>
+            <div class="status-badge" id="telem-badge">CONNECTED</div>
+        </header>
+
+        <!-- Power & Battery -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Power Telemetry</span>
+            </div>
+            <div class="grid-2x2">
+                <div class="metric-box">
+                    <span class="metric-label">Voltage</span>
+                    <span class="metric-value" id="t-v">12.1 <span class="metric-unit">V</span></span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">Current</span>
+                    <span class="metric-value" id="t-i">0.45 <span class="metric-unit">A</span></span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">Power</span>
+                    <span class="metric-value" id="t-p">5.4 <span class="metric-unit">W</span></span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">Est. SOC</span>
+                    <span class="metric-value" id="t-soc">88 <span class="metric-unit">%</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sensors & IMU -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">Sensors & IMU Fusion</span>
+            </div>
+            <div class="grid-2x2">
+                <div class="metric-box">
+                    <span class="metric-label">Front Dist</span>
+                    <span class="metric-value" id="t-df">95 <span class="metric-unit">cm</span></span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">Rear Dist</span>
+                    <span class="metric-value" id="t-dr">110 <span class="metric-unit">cm</span></span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">IMU Roll</span>
+                    <span class="metric-value" id="t-roll">0.2 <span class="metric-unit">°</span></span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">IMU Pitch</span>
+                    <span class="metric-value" id="t-pitch">-0.4 <span class="metric-unit">°</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- GPS Telemetry -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">NEO-6M GPS Receiver</span>
+            </div>
+            <div class="grid-2x2">
+                <div class="metric-box">
+                    <span class="metric-label">Fix Status</span>
+                    <span class="metric-value" id="t-gpsfix" style="font-size: 1rem;">NO FIX</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">Satellites</span>
+                    <span class="metric-value" id="t-sats">0</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">Latitude</span>
+                    <span class="metric-value" id="t-lat" style="font-size: 0.9rem;">0.0000</span>
+                </div>
+                <div class="metric-box">
+                    <span class="metric-label">Longitude</span>
+                    <span class="metric-value" id="t-lng" style="font-size: 0.9rem;">0.0000</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Log Terminal -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">System Event Terminal</span>
+            </div>
+            <div id="event-log-box" style="height: 120px; background: #0A0A0C; border-radius: 8px; padding: 8px; font-family: monospace; font-size: 0.75rem; color: #00E676; overflow-y: auto;">
+                [0000] [BOOT] AGNIS-4WD System Operational<br>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/telemetry.js"></script>
+</body>
+</html>

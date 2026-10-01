@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGNIS-4WD — VISION</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="navbar">
+            <div class="brand-title">AGNIS <span class="brand-accent">VISION</span></div>
+            <div class="status-badge" id="cam-status">CAMERA ONLINE</div>
+        </header>
+
+        <div class="card" style="padding: 8px;">
+            <div style="width: 100%; height: 320px; background: #000; border-radius: 12px; overflow: hidden; position: relative; display: flex; justify-content: center; align-items: center;">
+                <img id="stream-img" src="http://192.168.4.1:81/stream" alt="ESP32-CAM Stream" style="width: 100%; height: 100%; object-fit: cover;" onerror="camError()">
+                <div id="cam-fallback" style="display: none; position: absolute; color: var(--status-red); font-weight: 700;">CAMERA OFFLINE</div>
+            </div>
+        </div>
+
+        <div class="grid-2x2">
+            <div class="metric-box">
+                <span class="metric-label">Vehicle State</span>
+                <span class="metric-value" id="val-state">READY</span>
+            </div>
+            <div class="metric-box">
+                <span class="metric-label">Operating Mode</span>
+                <span class="metric-value" id="val-mode">MANUAL</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        function camError() {
+            document.getElementById('stream-img').style.display = 'none';
+            document.getElementById('cam-fallback').style.display = 'block';
+            document.getElementById('cam-status').innerText = 'CAMERA OFFLINE';
+            document.getElementById('cam-status').className = 'status-badge emergency';
+        }
+    </script>
+</body>
+</html>
